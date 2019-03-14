@@ -1,2 +1,2 @@
-# nezo_pont
+# NezoPont
 NezoPont with Vaadin 10
