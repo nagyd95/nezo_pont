@@ -1,13 +1,14 @@
 package com.nezopont;
 
-import com.nezopont.web.Favorite;
-import com.nezopont.web.HomeView;
+import com.nezopont.web.*;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 
 import com.vaadin.flow.component.HasElement;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -31,6 +32,15 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         PasswordField passwordField = new PasswordField("");
         passwordField.setPlaceholder("********");
         loginContent.add(passwordField);
+
+        Button loginButton=new Button("Bejelentkezés");
+
+        Button regButton=new Button("Regisztráció");
+        regButton.addClickListener( e-> {
+            regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
+        });
+        loginContent.add(loginButton);
+        loginContent.add(regButton);
         loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
         add(loginContent);
         H1 header = new H1("NézőPont");
@@ -42,9 +52,9 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
 
         menuBar.setWidth("15%");
         menuBar.add(new RouterLink("Föoldal", HomeView.class));
-        //menuBar.add(new RouterLink("Tv műsor", TvProgrammes.class));
+        menuBar.add(new RouterLink("Tv műsor", TvPrograms.class));
         menuBar.add(new RouterLink("Kedvencek", Favorite.class));
-        //menuBar.add(new RouterLink("Logout", LogoutView.class));
+        menuBar.add(new RouterLink("Kapcsolat", Contact.class));
 
         mainContent.add(menuBar);
         mainContent.add(childWrapper);
