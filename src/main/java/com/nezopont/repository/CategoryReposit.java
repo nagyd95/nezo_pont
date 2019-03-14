@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CategoryReposit extends JpaRepository<Category,Integer> {
+public interface CategoryReposit extends JpaRepository<Category,Long> {
 
     @Override
-   List<Category> findAll();
+    List<Category> findAll();
 }
