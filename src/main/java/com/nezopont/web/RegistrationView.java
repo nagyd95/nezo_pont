@@ -11,6 +11,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -30,24 +31,27 @@ public class RegistrationView extends Composite<VerticalLayout> implements HasCo
         firstName.setValueChangeMode(ValueChangeMode.EAGER);
         TextField lastName = new TextField();
         lastName.setValueChangeMode(ValueChangeMode.EAGER);
-        TextField phone = new TextField();
-        phone.setValueChangeMode(ValueChangeMode.EAGER);
+
         TextField email = new TextField();
         email.setValueChangeMode(ValueChangeMode.EAGER);
         TextField emailAgain = new TextField();
         email.setValueChangeMode(ValueChangeMode.EAGER);
-        DatePicker birthDate = new DatePicker();
+        PasswordField password=new PasswordField();
+        password.setValueChangeMode(ValueChangeMode.EAGER);
+        PasswordField passwordAgain=new PasswordField();
+        password.setValueChangeMode(ValueChangeMode.EAGER);
         Label infoLabel = new Label();
         Button save = new Button("Mentés");
         Button reset = new Button("Törlés");
 
         layoutWithBinder.addFormItem(firstName, "Vezetéknév");
         layoutWithBinder.addFormItem(lastName, "Keresztnév");
-        layoutWithBinder.addFormItem(birthDate, "Születési idő");
+
         layoutWithBinder.addFormItem(email, "E-mail");
         layoutWithBinder.addFormItem(emailAgain, "E-mail újra");
 
-
+        layoutWithBinder.addFormItem(password,"Jelszó");
+        layoutWithBinder.addFormItem(passwordAgain,"Jelszó ujra");
 
 
         HorizontalLayout actions = new HorizontalLayout();
@@ -61,6 +65,11 @@ public class RegistrationView extends Composite<VerticalLayout> implements HasCo
             firstName.setValue("");
             lastName.setValue("");
             infoLabel.setText("");
+            password.setValue("");
+            passwordAgain.setValue("");
+        });
+        save.addClickListener(event->{
+            //Megnézni minden kivan e töltve, email validacio, majd mentés
         });
     }
 }
