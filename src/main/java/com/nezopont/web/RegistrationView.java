@@ -88,7 +88,14 @@ public class RegistrationView extends Composite<VerticalLayout> implements HasCo
             //Megnézni minden kivan e töltve, email validacio,password BCryptPasswordEncoder majd mentés
             UserRegistrationDTO user=new UserRegistrationDTO(firstName.getValue(),lastName.getValue(),email.getValue(),emailAgain.getValue(),password.getValue(),passwordAgain.getValue());
             userService.save(user);
-            infoLabel.setText("Sikeres");
+            email.setValue("");
+            emailAgain.setValue("");
+            firstName.setValue("");
+            lastName.setValue("");
+            infoLabel.setText("");
+            password.setValue("");
+            passwordAgain.setValue("");
         });
     }
+
 }

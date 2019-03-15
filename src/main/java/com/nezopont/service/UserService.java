@@ -5,13 +5,19 @@ import com.nezopont.entity.User;
 import com.nezopont.repository.UserRepository;
 import com.nezopont.web.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
 @Service
 public class UserService {
+
+    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -23,7 +29,7 @@ public class UserService {
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(newUser);
     }
