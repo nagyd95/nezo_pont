@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 
 @Entity
 public class Message {
@@ -12,11 +11,11 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String msg;
-    private String email;
+    private String name;
 
-    public Message(String msg, String email) {
+    public Message(String msg, String name) {
         this.msg = msg;
-        this.email = email;
+        this.name = name;
     }
 
     public Message() {
@@ -38,12 +37,12 @@ public class Message {
         this.msg = msg;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -51,7 +50,7 @@ public class Message {
         return "Message{" +
                 "id=" + id +
                 ", msg='" + msg + '\'' +
-                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

@@ -3,7 +3,7 @@ package com.nezopont.service;
 import com.nezopont.entity.Role;
 import com.nezopont.entity.User;
 import com.nezopont.repository.UserRepository;
-import com.nezopont.web.UserRegistrationDTO;
+import com.nezopont.web.DTO.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

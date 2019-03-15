@@ -1,4 +1,4 @@
-package com.nezopont.web;
+package com.nezopont.web.DTO;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;

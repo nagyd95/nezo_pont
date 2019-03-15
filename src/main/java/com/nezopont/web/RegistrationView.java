@@ -1,17 +1,14 @@
 package com.nezopont.web;
 
 import com.nezopont.MainLayout;
-import com.nezopont.entity.Role;
-import com.nezopont.entity.User;
 import com.nezopont.service.UserService;
+import com.nezopont.web.DTO.UserRegistrationDTO;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -24,8 +21,6 @@ import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
 
 @Route(value="registration", layout = MainLayout.class)
 @RouteAlias(value="reg", layout = MainLayout.class)
