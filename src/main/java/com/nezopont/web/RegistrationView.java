@@ -1,6 +1,9 @@
 package com.nezopont.web;
 
 import com.nezopont.MainLayout;
+import com.nezopont.entity.Role;
+import com.nezopont.entity.User;
+import com.nezopont.service.UserService;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.button.Button;
@@ -18,11 +21,24 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
 
 @Route(value="registration", layout = MainLayout.class)
 @RouteAlias(value="reg", layout = MainLayout.class)
 @PageTitle("Regisztráció")
+@SpringComponent
+@RestController
 public class RegistrationView extends Composite<VerticalLayout> implements HasComponents{
+    public UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     public RegistrationView() {
         add(new H1("Regisztráció"));
@@ -69,7 +85,10 @@ public class RegistrationView extends Composite<VerticalLayout> implements HasCo
             passwordAgain.setValue("");
         });
         save.addClickListener(event->{
-            //Megnézni minden kivan e töltve, email validacio, majd mentés
+            //Megnézni minden kivan e töltve, email validacio,password BCryptPasswordEncoder majd mentés
+            UserRegistrationDTO user=new UserRegistrationDTO(firstName.getValue(),lastName.getValue(),email.getValue(),emailAgain.getValue(),password.getValue(),passwordAgain.getValue());
+            userService.save(user);
+            infoLabel.setText("Sikeres");
         });
     }
 }
