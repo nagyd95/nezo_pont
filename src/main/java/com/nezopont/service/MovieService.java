@@ -18,7 +18,6 @@ public class MovieService {
         this.moviesReposit = moviesReposit;
     }
     public List<Movie> findAllMovies(){
-
         return moviesReposit.findAll();
     }
 }

@@ -51,8 +51,8 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
         grid.setColumns("id", "name");
         grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
         movieGrid.setHeight("300px");
-        movieGrid.setColumns("id", "title","imdb","ageLimit","date");
-        grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+        movieGrid.setColumns("id", "title","imdb","ageLimit","date","categories");
+        grid.getColumnByKey("id").setWidth("10px").setFlexGrow(0);
     }
     @PostConstruct
     void listCustomers() {

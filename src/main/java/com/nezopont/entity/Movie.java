@@ -2,6 +2,7 @@ package com.nezopont.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -19,12 +20,14 @@ public class Movie {
     private int end;
     private String imgPath;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-
-    private List<Category> categories = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "MOVIE_CATEGORIES",
+            joinColumns = @JoinColumn(
+                    name = "movie_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "category_id", referencedColumnName = "id"))
+    private Collection<Category> categories = new ArrayList<>();
 
     public Movie() {
     }
@@ -104,8 +107,9 @@ public class Movie {
         this.imgPath = imgPath;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public String getCategories() {
+
+        return categories.toString();
     }
 
     public void setCategories(List<Category> categories) {

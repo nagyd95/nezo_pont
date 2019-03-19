@@ -12,9 +12,19 @@ insert into CATEGORY values (3,'Vigjáték');
 insert into CATEGORY values (4,'Kaland');
 insert into CATEGORY values (5,'Horror');
 insert into CATEGORY values (6,'Krimi');
-insert into MOVIE_CATEGORIES  (MOVIE_ID , CATEGORIES_ID ) values (1, 3);
-insert into MOVIE_CATEGORIES  (MOVIE_ID , CATEGORIES_ID ) values (1, 2);
-insert into MOVIE_CATEGORIES  (MOVIE_ID , CATEGORIES_ID ) values (1, 6);
+
+insert into MOVIE_CATEGORIES values (1,1);
+insert into MOVIE_CATEGORIES values (1,2);
+insert into MOVIE_CATEGORIES values (2,3);
+insert into MOVIE_CATEGORIES values (3,6);
+insert into MOVIE_CATEGORIES values (4,5);
+insert into MOVIE_CATEGORIES values (5,1);
+insert into MOVIE_CATEGORIES values (5,4);
+insert into MOVIE_CATEGORIES values (5,3);
+
+
+
+
 INSERT INTO ROLE (id, name)
 values (1, 'ADMIN');
 
