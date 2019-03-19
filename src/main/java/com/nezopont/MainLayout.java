@@ -8,22 +8,24 @@ import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.*;
+import com.vaadin.flow.theme.Theme;
 
 
 @Route(value="")
+@Theme(MyTheme.class)
 public class MainLayout extends Composite<VerticalLayout> implements HasComponents, RouterLayout, BeforeEnterObserver {
     private Div childWrapper = new Div();
 
     public MainLayout() {
         getContent().setSizeFull();
         HorizontalLayout loginContent = new HorizontalLayout();
+
         TextField usernameField = new TextField();
         usernameField.setThemeName("username-text");
 
@@ -41,7 +43,9 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         });
         loginContent.add(loginButton);
         loginContent.add(regButton);
-        loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
+        loginContent.getStyle().set("margin-left","auto");
+        loginContent.setAlignSelf(FlexComponent.Alignment.END);
+
         add(loginContent);
         H1 header = new H1("NézőPont");
         add(header);
