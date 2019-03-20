@@ -7,9 +7,13 @@ import com.nezopont.service.CategoryService;
 import com.nezopont.service.MovieService;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
@@ -26,8 +30,11 @@ import javax.annotation.PostConstruct;
 @SpringComponent
 public class Favorite extends Composite<VerticalLayout> implements HasComponents {
 
+    public ComboBox<Category> categoryComboBox;
+    public TextField nameTextField;
+    public Checkbox isForChildren;
+    public HorizontalLayout filterLayout;
     public CategoryService categoryService;
-    public Grid<Category> grid;
     public Grid<Movie> movieGrid;
     public MovieService movieService;
     @Autowired
@@ -42,23 +49,26 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
 
     public Favorite() {
         add(new H2("Kedvencek!"));
+
+        categoryComboBox = new ComboBox<>("Válassz kategóriát!");
+        nameTextField = new TextField("Név");
+        TextField dateTextField = new TextField("Kiadás");
+        isForChildren = new Checkbox("-18");
+        //TODO: slider for imdb rating, datepicker for date
+        filterLayout = new HorizontalLayout(categoryComboBox, nameTextField, dateTextField, isForChildren);
+        add(filterLayout);
+
         this.movieGrid=new Grid<>(Movie.class);
-        this.grid=new Grid<>(Category.class);
-        add( grid);
         add(movieGrid);
 
-        grid.setHeight("300px");
-        grid.setColumns("id", "name");
-        grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
         movieGrid.setHeight("300px");
         movieGrid.setColumns("id", "title","imdb","ageLimit","date","categories");
-        grid.getColumnByKey("id").setWidth("10px").setFlexGrow(0);
     }
     @PostConstruct
     void listCustomers() {
-            grid.setItems(categoryService.findAllCategory());
+            categoryComboBox.setItemLabelGenerator(Category::getName);
+            categoryComboBox.setItems(categoryService.findAllCategory());
             movieGrid.setItems(movieService.findAllMovies());
-
     }
 
 
