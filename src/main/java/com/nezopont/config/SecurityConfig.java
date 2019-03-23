@@ -35,11 +35,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
-        authenticationMgr.inMemoryAuthentication().withUser("userr").password("userr")
-                .authorities("ROLE_USER").and().withUser("javainuse").password("javainuse")
-                .authorities("ROLE_USER", "ROLE_ADMIN");
-    }
 }
