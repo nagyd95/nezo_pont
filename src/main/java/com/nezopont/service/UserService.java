@@ -15,9 +15,9 @@ import java.util.Arrays;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private static UserRepository userRepository;
 
-    private User user;
+    private static User userC;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -37,25 +37,16 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    public User login(User user) throws UserNotValidException {
+
+    public static User login(User user) throws UserNotValidException {
         if (isValid(user)) {
-            return this.user = userRepository.findByEmail(user.getEmail()); // .get() method?
+            return userC = userRepository.findByEmail(user.getEmail());
         }
         throw new UserNotValidException();
     }
 
-    public User register(User user) {
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
-        this.user = userRepository.save(user);
-        return user;
-    }
-
-    public boolean isValid(User user) {
+    public static boolean isValid(User user) {
         return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent();
-    }
-
-    public boolean isLoggedIn() {
-        return user != null;
     }
 
 }

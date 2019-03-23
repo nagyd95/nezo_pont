@@ -34,8 +34,13 @@ public class User {
         this.roles = roles;
     }
 
-    public User() {
+    public User(){}
+
+    public User(String username, String password){
+        this.email = username;
+        this.password = password;
     }
+
 
     public Long getId() {
         return id;
