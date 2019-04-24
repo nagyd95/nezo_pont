@@ -15,11 +15,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.*;
+import org.springframework.security.core.Authentication;
 
 
 @Route(value="")
 public class MainLayout extends Composite<VerticalLayout> implements HasComponents, RouterLayout, BeforeEnterObserver {
     private Div childWrapper = new Div();
+
+    public static Authentication AUTH;
+
 
     public MainLayout() {
         getContent().setSizeFull();
@@ -40,6 +44,13 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
             regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
         });
         loginContent.add(loginButton);
+        loginButton.addClickListener( e-> {
+            if(AUTH.authenticate(usernameField.getValue(), passwordField.getValue())){
+            //if(usernameField.getValue() != null && passwordField.getValue() != null) {
+              //  getApplication().setUser(newUser);
+                loginButton.getUI().ifPresent(ui -> ui.navigate("fooldal"));
+            }
+        });
         loginContent.add(regButton);
         loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
         add(loginContent);

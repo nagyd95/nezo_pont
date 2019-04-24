@@ -21,18 +21,51 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
+   /* @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");
-    }
+    }*/
+
+    /*@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/VAADIN/**", "/HEARTBEAT/**", "/UIDL/**", "/resources/**"
+                        , "/login", "/login**", "/login/**", "/manifest.json", "/icons/**", "/images/**",
+                        // (development mode) static resources
+                        "/frontend/**",
+                        // (development mode) webjars
+                        "/webjars/**",
+                        // (development mode) H2 debugging console
+                        "/h2-console/**",
+                        // (production mode) static resources
+                        "/frontend-es5/**", "/frontend-es6/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .successForwardUrl("/something")
+                .and()
+                .logout()
+                .permitAll();
+    }*/
 
 
-
-    @Override
+  @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/db/**").permitAll();
+                .antMatchers("/db/**").permitAll()
+                .antMatchers("/login", "/manifest.json", "/icons/**", "/images/**",
+              // (development mode) static resources
+              "/frontend/**",
+              // (development mode) webjars
+              "/webjars/**",
+              // (development mode) H2 debugging console
+              "/h2-console/**",
+              // (production mode) static resources
+              "/frontend-es5/**", "/frontend-es6/**").permitAll();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
