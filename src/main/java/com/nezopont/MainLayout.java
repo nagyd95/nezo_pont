@@ -30,14 +30,16 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         usernameField.setThemeName("username-text");
 
         loginContent.add(new TextField(""));
-
+        usernameField.addClassName("field");
         PasswordField passwordField = new PasswordField("");
+        passwordField.addClassName("field");
         passwordField.setPlaceholder("********");
         loginContent.add(passwordField);
 
         Button loginButton=new Button("Bejelentkezés");
-
+        loginButton.addClassName("button");
         Button regButton=new Button("Regisztráció");
+        regButton.addClassName("button");
         regButton.addClickListener( e-> {
             regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
         });
@@ -53,7 +55,7 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         HorizontalLayout mainContent = new HorizontalLayout();
         VerticalLayout menuBar = new VerticalLayout();
 
-
+        menuBar.addClassName("menu");
         menuBar.setWidth("15%");
         menuBar.add(new RouterLink("Föoldal", HomeView.class));
         menuBar.add(new RouterLink("Tv műsor", TvPrograms.class));

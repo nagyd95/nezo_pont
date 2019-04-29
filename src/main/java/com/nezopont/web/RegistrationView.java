@@ -40,20 +40,27 @@ public class RegistrationView extends Composite<VerticalLayout> implements HasCo
         FormLayout layoutWithBinder = new FormLayout();
         TextField firstName = new TextField();
         firstName.setValueChangeMode(ValueChangeMode.EAGER);
+        firstName.addClassName("field");
         TextField lastName = new TextField();
         lastName.setValueChangeMode(ValueChangeMode.EAGER);
-
+        lastName.addClassName("field");
         TextField email = new TextField();
         email.setValueChangeMode(ValueChangeMode.EAGER);
+        email.addClassName("field");
         TextField emailAgain = new TextField();
         email.setValueChangeMode(ValueChangeMode.EAGER);
+        emailAgain.addClassName("field");
         PasswordField password=new PasswordField();
         password.setValueChangeMode(ValueChangeMode.EAGER);
+        password.addClassName("field");
         PasswordField passwordAgain=new PasswordField();
         password.setValueChangeMode(ValueChangeMode.EAGER);
+        passwordAgain.addClassName("field");
         Label infoLabel = new Label();
         Button save = new Button("Mentés");
+        save.addClassName("button");
         Button reset = new Button("Törlés");
+        reset.addClassName("button");
 
         layoutWithBinder.addFormItem(firstName, "Vezetéknév");
         layoutWithBinder.addFormItem(lastName, "Keresztnév");

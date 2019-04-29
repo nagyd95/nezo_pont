@@ -40,12 +40,15 @@ public class Contact extends Composite<VerticalLayout> implements HasComponents 
         add(new H2("Lépjen velünk kapcsolatba"));
         FormLayout layoutWithBinder = new FormLayout();
         TextField name=new TextField();
+        name.addClassName("field");
         name.setValueChangeMode(ValueChangeMode.EAGER);
         TextArea textArea=new TextArea();
+        textArea.addClassName("field");
         textArea.setHeight("large");
 
 
         Button save = new Button("Küldés");
+        save.addClassName("button");
         textArea.getStyle().set("height","40px");
         layoutWithBinder.addFormItem(name, "Adja meg nevét");
         layoutWithBinder.addFormItem(textArea, "Üzenet");
