@@ -3,60 +3,52 @@ package com.nezopont;
 import com.nezopont.entity.User;
 import com.nezopont.service.UserService;
 import com.nezopont.web.*;
+import com.nezopont.web.DTO.LogindDTO;
 import com.vaadin.flow.component.*;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.*;
+import com.vaadin.flow.server.VaadinService;
+import com.vaadin.flow.server.VaadinSession;
 
 
 @Route(value="")
 public class MainLayout extends Composite<VerticalLayout> implements HasComponents, RouterLayout, BeforeEnterObserver {
     private Div childWrapper = new Div();
-
     private User currentUser;
-
+   // private VaadinSession vaadinSession=new VaadinSession();
     public MainLayout() {
         getContent().setSizeFull();
-        HorizontalLayout loginContent = new HorizontalLayout();
-        TextField usernameField = new TextField();
-        usernameField.setThemeName("username-text");
-
-        loginContent.add(new TextField(""));
-
-        PasswordField passwordField = new PasswordField("");
-        passwordField.setPlaceholder("********");
-        loginContent.add(passwordField);
-
-        Button loginButton=new Button("Bejelentkezés");
-        Button regButton=new Button("Regisztráció");
-
-        loginButton.addClickListener(e -> {
-            try {
-                currentUser = UserService.login(authenticate((String) usernameField.getValue(), (String) passwordField.getValue()));
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            String username = (String) usernameField.getValue();
-            loginContent.removeAll();
-            loginButton.getUI().ifPresent(ui -> ui.navigate("fooldal"));
-            loginContent.add(new Text("Hello " + username + "!"));
-        });
+        if(VaadinSession.getCurrent().getAttribute("userL") ==null){
+            HorizontalLayout loginContent = new HorizontalLayout();
+            Button loginButton = new Button("Bejelentkezés");
+            Button regButton = new Button("Regisztráció");
+            loginButton.addClickListener(e -> {
+                loginButton.getUI().ifPresent(ui -> ui.navigate("login"));
 
 
-        regButton.addClickListener( e-> {
-            regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
-        });
-        loginContent.add(loginButton);
-        loginContent.add(regButton);
-        loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
-        add(loginContent);
+
+            });
+
+
+            regButton.addClickListener(e -> {
+                regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
+            });
+            loginContent.add(loginButton);
+            loginContent.add(regButton);
+            loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
+            add(loginContent);
+        }
         H1 header = new H1("NézőPont");
         add(header);
 
@@ -90,6 +82,7 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
 
+
     }
 
     private User authenticate(String username, String password) throws Exception{
@@ -102,4 +95,7 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         }
 
     }
+
+
+
 }

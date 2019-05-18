@@ -3,7 +3,7 @@ package com.nezopont.service;
 import com.nezopont.entity.Role;
 import com.nezopont.entity.User;
 import com.nezopont.repository.UserRepository;
-import com.nezopont.service.exceptions.UserNotValidException;
+import com.nezopont.web.DTO.LogindDTO;
 import com.nezopont.web.DTO.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,9 +15,8 @@ import java.util.Arrays;
 public class UserService {
 
     @Autowired
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private static User userC;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -38,15 +37,18 @@ public class UserService {
     }
 
 
-    public static User login(User user) throws UserNotValidException {
-        if (isValid(user)) {
-            return userC = userRepository.findByEmail(user.getEmail());
-        }
-        throw new UserNotValidException();
+    public String login(LogindDTO login)  {
+            User loginUser=new User(login.getEmail(),login.getPassword());
+            System.out.println(loginUser.getPassword());
+            System.out.println(userRepository.findByEmail(loginUser.getEmail()).getPassword());
+        System.out.println(passwordEncoder.encode(login.getPassword()));
+        boolean bent=(passwordEncoder.matches(loginUser.getPassword(),userRepository.findByEmail(loginUser.getEmail()).getPassword()));
+        System.out.println(bent);
+            return loginUser.getEmail();
+
+
     }
 
-    public static boolean isValid(User user) {
-        return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent();
-    }
+
 
 }
