@@ -53,6 +53,16 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
             loginContent.add(regButton);
             loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
             add(loginContent);
+        }else{
+
+            HorizontalLayout loginContent = new HorizontalLayout();
+            Button kijelentkezes = new Button("Kijelentkezés");
+            loginContent.add(kijelentkezes);
+            add(loginContent);
+            kijelentkezes.addClickListener(e -> {
+                VaadinSession.getCurrent().getSession().invalidate();
+                kijelentkezes.getUI().ifPresent(ui -> ui.navigate("fooldal"));
+            });
         }
         H1 header = new H1("NézőPont");
         add(header);
