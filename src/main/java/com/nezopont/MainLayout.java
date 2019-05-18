@@ -57,13 +57,13 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
             regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
         });
         loginContent.add(loginButton);
-        loginButton.addClickListener( e-> {
+     /*   loginButton.addClickListener( e-> {
             if(AUTH.authenticate(usernameField.getValue(), passwordField.getValue())){
             //if(usernameField.getValue() != null && passwordField.getValue() != null) {
               //  getApplication().setUser(newUser);
                 loginButton.getUI().ifPresent(ui -> ui.navigate("fooldal"));
             }
-        });
+        });*/
         loginContent.add(regButton);
         loginContent.setAlignItems(FlexComponent.Alignment.CENTER);
         add(loginContent);
