@@ -29,8 +29,7 @@ import com.vaadin.flow.server.VaadinSession;
 public class MainLayout extends Composite<VerticalLayout> implements HasComponents, RouterLayout, BeforeEnterObserver {
     private Div childWrapper = new Div();
 
-    private User currentUser;
-   
+
     public MainLayout() {
         getContent().setSizeFull();
 
@@ -40,12 +39,7 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
             Button regButton = new Button("Regisztráció");
             loginButton.addClickListener(e -> {
                 loginButton.getUI().ifPresent(ui -> ui.navigate("login"));
-
-
-
             });
-
-
             regButton.addClickListener(e -> {
                 regButton.getUI().ifPresent(ui -> ui.navigate("registration"));
             });
@@ -69,8 +63,6 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
 
         HorizontalLayout mainContent = new HorizontalLayout();
         VerticalLayout menuBar = new VerticalLayout();
-
-
         menuBar.setWidth("15%");
         menuBar.add(new RouterLink("Föoldal", HomeView.class));
         menuBar.add(new RouterLink("Tv műsor", TvPrograms.class));
@@ -80,11 +72,7 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
         mainContent.add(menuBar);
         mainContent.add(childWrapper);
         mainContent.setFlexGrow(1, childWrapper);
-
         add(mainContent);
-
-
-
         getContent().setFlexGrow(1, mainContent);
         getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, header);
         getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH, mainContent);

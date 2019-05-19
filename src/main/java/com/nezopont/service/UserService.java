@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -47,6 +48,12 @@ public class UserService {
             return loginUser.getEmail();
 
 
+    }
+   public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    public List<User> findAllCategory(){
+        return userRepository.findAll();
     }
 
 

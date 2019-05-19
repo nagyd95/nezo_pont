@@ -48,10 +48,9 @@ public class LoginView extends Composite<VerticalLayout> implements HasComponent
 
         Button login = new Button("Bejelentkezés");
         Label infoLabel = new Label("");
-
-        layoutWithBinder.addFormItem(infoLabel,"");
         layoutWithBinder.addFormItem(email, "Email ");
         layoutWithBinder.addFormItem(pass, "Jelszó");
+        layoutWithBinder.addFormItem(infoLabel,"");
 
         HorizontalLayout actions = new HorizontalLayout();
         actions.add(login);
