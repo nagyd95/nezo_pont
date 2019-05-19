@@ -18,6 +18,7 @@ public class Movie {
     private Date date;
     private int start;
     private int end;
+    private int tvchanel;
     private String imgPath;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -32,7 +33,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, double imdb, int ageLimit, Date date, int start, int end, String imgPath, List<Category> categories) {
+    public Movie(String title, double imdb, int ageLimit, Date date, int start, int end, String imgPath, List<Category> categories,int tvchanel) {
         this.title = title;
         this.imdb = imdb;
         this.ageLimit = ageLimit;
@@ -41,6 +42,15 @@ public class Movie {
         this.end = end;
         this.imgPath = imgPath;
         this.categories = categories;
+        this.tvchanel=tvchanel;
+    }
+
+    public int getTvchanel() {
+        return tvchanel;
+    }
+
+    public void setTvchanel(int tvchanel) {
+        this.tvchanel = tvchanel;
     }
 
     public Date getDate() {
