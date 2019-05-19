@@ -20,4 +20,7 @@ public class MovieService {
     public List<Movie> findAllMovies(){
         return moviesReposit.findAll();
     }
+    public List<Movie> findAllby(int id){
+        return moviesReposit.findAllBy(id);
+    }
 }

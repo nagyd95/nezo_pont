@@ -20,4 +20,6 @@ public class TvChanelService {
     public List<TvChanels> findAllChanel(){
         return tvChanelsRep.findAll();
     }
+
+
 }

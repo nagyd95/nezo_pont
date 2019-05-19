@@ -28,11 +28,18 @@ public class TvPrograms extends Composite<VerticalLayout> implements HasComponen
     public HorizontalLayout filterLayout;
     public TvChanelService tvChanelService;
     public Grid<Movie> movieGrid;
-
+    public MovieService movieService;
+    private int id;
     @Autowired
     public void setMovieService(TvChanelService tvChanelService) {
         this.tvChanelService = tvChanelService;
     }
+
+    @Autowired
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
+    }
+
 
 
 
@@ -42,17 +49,27 @@ public class TvPrograms extends Composite<VerticalLayout> implements HasComponen
         filterLayout = new HorizontalLayout(categoryComboBox);
         add(filterLayout);
 
+
         this.movieGrid=new Grid<>(Movie.class);
         add(movieGrid);
         movieGrid.setHeight("300px");
-        movieGrid.setColumns("title","imdb","date","categories","tvchanel");
+        movieGrid.setColumns("title","imdb","date","categories");
     }
 
     @PostConstruct
     void listCustomers() {
         categoryComboBox.setItemLabelGenerator(TvChanels::getName);
         categoryComboBox.setItems(tvChanelService.findAllChanel());
-        //movieGrid.setItems(movieService.findAllMovies());
+        categoryComboBox.addValueChangeListener(event -> {
+            if (event.getSource().isEmpty()) {
+
+            } else {
+
+                movieGrid.setItems(movieService.findAllby(categoryComboBox.getValue().getId()));
+
+            }
+        });
+
     }
 
 

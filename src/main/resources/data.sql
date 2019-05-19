@@ -6,11 +6,11 @@ insert into Tv_Chanels(name) values ('FILM+');
 
 
 
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (5,12,13,3.4,13, 'path','cim' ,'2019-04-03',1);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (1,18,13,3.4,13, 'path','cim' ,'2019-03-20',2);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (2,12,13,3.4,13, 'path','cim' ,'2019-03-19',1);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (3,12,13,3.4,13, 'path','cim' ,'2019-03-18',1);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (4,12,13,3.4,13, 'path','Nagyon jo' ,'2019-03-17',1);
+insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (5,12,13,2.2,13, 'path','Horrora akadva' ,'2019-04-03',1);
+insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (1,18,13,4.4,13, 'path','Taplo telapo' ,'2019-03-20',2);
+insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (2,12,13,5.7,13, 'path','Dirty Dancing' ,'2019-03-19',2);
+insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (3,12,13,1.9,13, 'path','Hirado','2019-03-18',1);
+insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (4,12,13,2.8,13, 'path','Nagyon jo' ,'2019-03-17',1);
 
 
 insert into CATEGORY values (1,'Akció');
