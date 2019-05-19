@@ -21,5 +21,8 @@ public class TvChanelService {
         return tvChanelsRep.findAll();
     }
 
+    public TvChanels findByid(int id){
+       return tvChanelsRep.findById(id);
+    }
 
 }

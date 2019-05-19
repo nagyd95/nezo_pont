@@ -20,6 +20,9 @@ public interface MoviesReposit extends JpaRepository<Movie,Long> {
     @Query(value = "SELECT * FROM MOVIE where age_Limit=18", nativeQuery = true)
     List<Movie> findAllByKorhat();
 
+    @Query(value = "SELECT * FROM MOVIE ORDER BY imdb DESC limit 1 ", nativeQuery = true)
+    Movie findFirst();
+
     @Override
     List<Movie> findAll();
 

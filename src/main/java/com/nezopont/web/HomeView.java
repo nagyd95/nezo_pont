@@ -2,8 +2,14 @@ package com.nezopont.web;
 
 import com.nezopont.MainLayout;
 import com.nezopont.entity.Category;
+import com.nezopont.entity.Movie;
+import com.nezopont.entity.TvChanels;
 import com.nezopont.entity.User;
+import com.nezopont.service.CategoryService;
+import com.nezopont.service.MovieService;
+import com.nezopont.service.TvChanelService;
 import com.nezopont.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.LADD;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.button.Button;
@@ -19,6 +25,8 @@ import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Route(value="fooldal", layout = MainLayout.class)
 @RouteAlias(value="fo", layout = MainLayout.class)
@@ -27,11 +35,22 @@ public class HomeView extends Composite<VerticalLayout> implements HasComponents
 
     public UserService userService;
     private User loggedUser;
+    Label top=new Label();
 
-
+    public TvChanelService tvChanelService;
+    public MovieService movieService;
+    @Autowired
+    public void setCategoryReposit(TvChanelService tvChanelService){
+        this.tvChanelService=tvChanelService;
+    }
 
     @Autowired
-    public void setMovieService(UserService userService) {
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -50,8 +69,13 @@ public class HomeView extends Composite<VerticalLayout> implements HasComponents
         }
         if(VaadinSession.getCurrent().getAttribute("userL") == null) {
         }
+
+        H3 napi=new H3("Napi ajanló:");
         menuBar.add(uvozloszoveg);
-        H3 friss=new H3("Friss hireink:");
+
+        menuBar.add(napi);
+        menuBar.add(top);
+        H3 friss=new H3("Friss híreink:");
         Label hir1=new Label("Elindult az M3 internetes adása\n" +
                 "2019. május 1-jén az M3 új korszakába lépett. A klasszikus tévécsatorna helyett olyan online platform indult, mely nagyobb teret enged az egyéni nézői ízlésnek és érdeklődésnek.");
         Label hir2=new Label("Két hétre hosszabbítja a gyereknapot a UPC Direct\n"+
@@ -66,7 +90,12 @@ public class HomeView extends Composite<VerticalLayout> implements HasComponents
     }
     @PostConstruct
     void listUser() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         loggedUser=userService.findAllCategory().get(0);
+        Movie topmovie=movieService.findfirst();
+        TvChanels tvChanels=tvChanelService.findByid(topmovie.getTvchanel());
+        top.setText("Cim: "+topmovie.getTitle()+" Kategoria: "+topmovie.getCategories() +" IMDB:"+topmovie.getImdb()+" Start: "+format.format(topmovie.getDate())+" "+topmovie.getStart()+":00" +" a(z) "+tvChanels.getName()+"-en");
+
 
 
     }

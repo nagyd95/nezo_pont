@@ -34,4 +34,8 @@ public class MovieService {
     public List<Movie> findallByKorhat(){
         return moviesReposit.findAllByKorhat();
     }
+
+    public Movie findfirst(){
+        return moviesReposit.findFirst();
+    }
 }

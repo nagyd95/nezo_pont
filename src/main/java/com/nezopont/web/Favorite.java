@@ -71,7 +71,8 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
             if (event.getSource().isEmpty()) {
 
             } else {
-
+                nameTextField.setValue("");
+                isForChildren.setValue(false);
                 movieGrid.setItems(movieService.findallBykat(categoryComboBox.getValue().getId()));
                 //movieGrid.setItems(movieService.findAllMovies());
 
@@ -81,7 +82,7 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
             if (event.getSource().isEmpty()) {
 
             } else {
-
+                isForChildren.setValue(false);
                 movieGrid.setItems(movieService.findallByTitle(nameTextField.getValue()));
                 //movieGrid.setItems(movieService.findAllMovies());
 
@@ -91,6 +92,8 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
             if (event.getSource().isEmpty()) {
 
             } else {
+                nameTextField.setValue("");
+
 
                 movieGrid.setItems(movieService.findallByKorhat());
                 //movieGrid.setItems(movieService.findAllMovies());

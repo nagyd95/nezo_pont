@@ -13,6 +13,8 @@ public interface TvChanelsRep extends JpaRepository<TvChanels,Long> {
     @Override
     List<TvChanels> findAll();
 
+    TvChanels findById(int id);
+
 
 
 }
