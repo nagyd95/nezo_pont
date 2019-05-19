@@ -18,7 +18,7 @@ public class Movie {
     private int ageLimit;
     private Date date;
     private int start;
-    private int end;
+    private int hossz;
     private int tvchanel;
     private String imgPath;
 
@@ -34,13 +34,13 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, double imdb, int ageLimit, Date date, int start, int end, String imgPath, List<Category> categories,int tvchanel) {
+    public Movie(String title, double imdb, int ageLimit, Date date, int start, int hossz, String imgPath, List<Category> categories,int tvchanel) {
         this.title = title;
         this.imdb = imdb;
         this.ageLimit = ageLimit;
         this.date = date;
         this.start = start;
-        this.end = end;
+        this.hossz = hossz;
         this.imgPath = imgPath;
         this.categories = categories;
         this.tvchanel=tvchanel;
@@ -103,11 +103,11 @@ public class Movie {
     }
 
     public int getEnd() {
-        return end;
+        return hossz;
     }
 
-    public void setEnd(int end) {
-        this.end = end;
+    public void setEnd(int hossz) {
+        this.hossz = hossz;
     }
 
     public String getImgPath() {
@@ -135,7 +135,7 @@ public class Movie {
                 ", imdb=" + imdb +
                 ", ageLimit=" + ageLimit +
                 ", start=" + start +
-                ", end=" + end +
+                ", hossz=" + hossz +
                 ", imgPath='" + imgPath + '\'' +
                 ", categories=" + categories +
                 '}';

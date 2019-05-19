@@ -32,9 +32,9 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
 
     public MainLayout() {
         getContent().setSizeFull();
-
+        HorizontalLayout loginContent = new HorizontalLayout();
         if(VaadinSession.getCurrent().getAttribute("userL") ==null){
-            HorizontalLayout loginContent = new HorizontalLayout();
+
             Button loginButton = new Button("Bejelentkezés");
             Button regButton = new Button("Regisztráció");
             loginButton.addClickListener(e -> {
@@ -49,18 +49,20 @@ public class MainLayout extends Composite<VerticalLayout> implements HasComponen
             add(loginContent);
         }else{
 
-            HorizontalLayout loginContent = new HorizontalLayout();
+
             Button kijelentkezes = new Button("Kijelentkezés");
             loginContent.add(kijelentkezes);
             add(loginContent);
             kijelentkezes.addClickListener(e -> {
+               // VaadinSession.getCurrent().setAttribute("userL", null);
                 VaadinSession.getCurrent().getSession().invalidate();
                 kijelentkezes.getUI().ifPresent(ui -> ui.navigate("fooldal"));
             });
         }
         H1 header = new H1("NézőPont");
         add(header);
-
+        loginContent.getStyle().set("margin-left","auto");
+        loginContent.setAlignSelf(FlexComponent.Alignment.END);
         HorizontalLayout mainContent = new HorizontalLayout();
         VerticalLayout menuBar = new VerticalLayout();
         menuBar.setWidth("15%");

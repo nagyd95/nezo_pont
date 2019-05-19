@@ -6,11 +6,13 @@ insert into Tv_Chanels(name) values ('FILM+');
 
 
 
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (5,12,13,2.2,13, 'path','Horrora akadva' ,'2019-04-03',1);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (1,18,13,4.4,13, 'path','Taplo telapo' ,'2019-03-20',2);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (2,12,13,5.7,13, 'path','Dirty Dancing' ,'2019-03-19',2);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (3,12,13,1.9,13, 'path','Hirado','2019-03-18',1);
-insert into movie(id,age_limit,end,imdb,start,img_path,title,date,tvchanel) values (4,12,13,2.8,13, 'path','Nagyon jo' ,'2019-03-17',1);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (12,2,6.2,16, 'path','Horrora akadva' ,'2019-04-03',1);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (18,2,4.4,18, 'path','Tapló telapó' ,'2019-03-20',2);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (12,2,5.7,20, 'path','Dirty Dancing' ,'2019-03-19',2);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (12,1,1.9,18, 'path','Hirado','2019-05-20',1);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (12,3,8.8,19, 'path','Karib-tenger kalózai: Salazar bosszúja' ,'2019-05-20',1);
+insert into movie(age_limit,hossz,imdb,start,img_path,title,date,tvchanel) values (12,2,8.8,22, 'path','A függetlenség napja' ,'2019-05-20',1);
+
 
 
 insert into CATEGORY values (1,'Akció');
@@ -23,13 +25,16 @@ insert into CATEGORY values (6,'Krimi');
 
 
 insert into MOVIE_CATEGORIES values (1,1);
-insert into MOVIE_CATEGORIES values (1,2);
+insert into MOVIE_CATEGORIES values (1,5);
+insert into MOVIE_CATEGORIES values (2,2);
 insert into MOVIE_CATEGORIES values (2,3);
-insert into MOVIE_CATEGORIES values (3,6);
-insert into MOVIE_CATEGORIES values (4,5);
+insert into MOVIE_CATEGORIES values (3,2);
+insert into MOVIE_CATEGORIES values (4,2);
+insert into MOVIE_CATEGORIES values (5,2);
 insert into MOVIE_CATEGORIES values (5,1);
-insert into MOVIE_CATEGORIES values (5,4);
-insert into MOVIE_CATEGORIES values (5,3);
+insert into MOVIE_CATEGORIES values (6,2);
+insert into MOVIE_CATEGORIES values (6,1);
+
 
 
 

@@ -52,10 +52,9 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
 
         categoryComboBox = new ComboBox<>("Válassz kategóriát!");
         nameTextField = new TextField("Név");
-        TextField dateTextField = new TextField("Kiadás");
-        isForChildren = new Checkbox("-18");
+        isForChildren = new Checkbox("18");
         //TODO: slider for imdb rating, datepicker for date
-        filterLayout = new HorizontalLayout(categoryComboBox, nameTextField, dateTextField, isForChildren);
+        filterLayout = new HorizontalLayout(categoryComboBox, nameTextField, isForChildren);
         add(filterLayout);
 
         this.movieGrid=new Grid<>(Movie.class);
@@ -68,7 +67,39 @@ public class Favorite extends Composite<VerticalLayout> implements HasComponents
     void listCustomers() {
             categoryComboBox.setItemLabelGenerator(Category::getName);
             categoryComboBox.setItems(categoryService.findAllCategory());
-            movieGrid.setItems(movieService.findAllMovies());
+            categoryComboBox.addValueChangeListener(event -> {
+            if (event.getSource().isEmpty()) {
+
+            } else {
+
+                movieGrid.setItems(movieService.findallBykat(categoryComboBox.getValue().getId()));
+                //movieGrid.setItems(movieService.findAllMovies());
+
+            }
+        });
+        nameTextField.addValueChangeListener(event -> {
+            if (event.getSource().isEmpty()) {
+
+            } else {
+
+                movieGrid.setItems(movieService.findallByTitle(nameTextField.getValue()));
+                //movieGrid.setItems(movieService.findAllMovies());
+
+            }
+        });
+        isForChildren.addValueChangeListener(event -> {
+            if (event.getSource().isEmpty()) {
+
+            } else {
+
+                movieGrid.setItems(movieService.findallByKorhat());
+                //movieGrid.setItems(movieService.findAllMovies());
+
+            }
+        });
+
+
+
     }
 
 

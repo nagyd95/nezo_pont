@@ -53,7 +53,7 @@ public class TvPrograms extends Composite<VerticalLayout> implements HasComponen
         this.movieGrid=new Grid<>(Movie.class);
         add(movieGrid);
         movieGrid.setHeight("300px");
-        movieGrid.setColumns("title","imdb","date","categories");
+        movieGrid.setColumns("title","imdb","date","start","categories");
     }
 
     @PostConstruct

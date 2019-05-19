@@ -23,4 +23,15 @@ public class MovieService {
     public List<Movie> findAllby(int id){
         return moviesReposit.findAllBy(id);
     }
+
+    public List<Movie> findallBykat(long id){
+        return moviesReposit.findAllByKat(id);
+    }
+
+    public List<Movie> findallByTitle(String title){
+        return moviesReposit.findAllByTitle(title);
+    }
+    public List<Movie> findallByKorhat(){
+        return moviesReposit.findAllByKorhat();
+    }
 }

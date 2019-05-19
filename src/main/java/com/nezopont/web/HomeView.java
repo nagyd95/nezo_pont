@@ -47,10 +47,8 @@ public class HomeView extends Composite<VerticalLayout> implements HasComponents
             edit.addClickListener(e -> {
                 edit.getUI().ifPresent(ui -> ui.navigate("edit"));
             });
-            System.out.println("Bent vagy admin");
         }
         if(VaadinSession.getCurrent().getAttribute("userL") == null) {
-            System.out.println("nem vagy admin");
         }
         menuBar.add(uvozloszoveg);
         H3 friss=new H3("Friss hireink:");
@@ -69,7 +67,6 @@ public class HomeView extends Composite<VerticalLayout> implements HasComponents
     @PostConstruct
     void listUser() {
         loggedUser=userService.findAllCategory().get(0);
-        System.out.println(loggedUser.getEmail()+loggedUser.getId());
 
 
     }
